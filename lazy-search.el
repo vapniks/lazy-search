@@ -192,7 +192,12 @@ Otherwise region will be cleared."
   "The `one-key' menu for `lazy-search'."
   (interactive)
   (lazy-search-init)
-  (one-key-menu "Lazy Search" lazy-search-menu-alist t t 'lazy-search-abort nil t))
+  (one-key-menu "Lazy Search" 'lazy-search-menu-alist
+                :miss-match-exit-p t
+                :recursion-p t
+                :protect-function 'lazy-search-abort
+                :alternate-function nil
+                :execute-last-command-when-miss-match t))
 
 (defun lazy-search-init ()
   "Lazy search initialization."
